@@ -1,29 +1,54 @@
 package lists_235;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.NoSuchElementException;
+
 
 public class Linked_List_235<Type> implements List_235<Type> {
 
+	List<Type> list;
 	public Node<Type> firstNode;
+	//public Node<Type> next;
 	int size;
+	
 
 	/**
 	 * Constructor for the Linked List 
 	 */
 	public Linked_List_235() {
-		// TODO: Set up the firstNode and size.
+		firstNode = new Node<Type>(null, null);
+		list = new LinkedList<Type>(); //Do we even need a list? I'm thinking we are doing everything a linked_list can already do. Creating nodes and implementing
+										//these methods seem to be creating LinkedList. We are simply re-inventing the wheel to learn how they work right??
+		//list.add(firstNode.data);
 	}
 
 	@Override
 	public void add_first(Type data) {
-		// FIXME: See List_235.java JavaDoc Comments
+		Node<Type> newFirstNode = new Node<Type>(data, null);
+		newFirstNode.next = firstNode;
+		firstNode = newFirstNode;   //How does this not make a list with firstNode, firstNode, or even a thousand more of the same??
+		
 	}
 
 	@Override
 	public void add_last(Type data) {
-		// FIXME: See List_235.java JavaDoc Comments
-	}
+		if (firstNode == null) {
+			firstNode.data = data;
+			list.add(firstNode.data);
+			return;
+		}
+			
+			else { Node<Type> current = firstNode; 
+					while (current.next !=null) {
+						current = current.next;
+					}
+					Node<Type> last = new Node<Type>(data, null);
+					current.next = last;
+			}
+		}
+	
 
 	@Override
 	public void add_middle(int after, Type data) {
