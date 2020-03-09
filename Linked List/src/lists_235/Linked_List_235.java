@@ -12,6 +12,7 @@ public class Linked_List_235<Type> implements List_235<Type> {
 	public Node<Type> firstNode;
 	//public Node<Type> next;
 	int size;
+	int count;
 	
 
 	/**
@@ -52,36 +53,66 @@ public class Linked_List_235<Type> implements List_235<Type> {
 
 	@Override
 	public void add_middle(int after, Type data) {
-		// FIXME: See List_235.java JavaDoc Comments
+		count = 0;
+		Node<Type> current = firstNode;
+		while (count < after) {
+			current = current.next;
+			count++;
+		}
+		Node<Type> saved = current.next;
+		current.next = new Node<Type>(data, saved); //Is current.next referencing a whole new branch if we were to put it as the argument, or does creating
+		//alt parameters (data, current.next		//a stored (ie saved, as above) node the soultion to keep us "on the train")?
+		
 	}
 
 	@Override
 	public void clear() {
-		// FIXME: See List_235.java JavaDoc Comments
+		 Node<Type> current = firstNode; 
+			while (current.next !=null) {
+				current.data = null;
+				current = current.next;
+			}
+			size = 0;
+			
+		
 	}
 
 	@Override
 	public boolean contains(Type item) {
-		// FIXME: See List_235.java JavaDoc Comments
-		return false;
+		 Node<Type> current = firstNode; 
+			while (current.next !=null) {
+				if (current.data == item)
+					return true;
+				current = current.next;
+			}	
+					return false; 
 	}
 
 	@Override
 	public boolean contains_recursive(Type item) {
-		// FIXME: See List_235.java JavaDoc Comments
-		return false;
-	}
+		 Node<Type> current = firstNode; 
+			while (current.next !=null) {
+				if (current.data == item) return true;
+			}
+			return false;
+			
+		}
 
+	public void helper_method() {
+		
+	}
 	@Override
 	public Type get_first() throws NoSuchElementException {
-		// FIXME: See List_235.java JavaDoc Comments
-		return null;
+		return firstNode.data;
 	}
 
 	@Override
 	public Type get_last() throws NoSuchElementException {
-		// FIXME: See List_235.java JavaDoc Comments
-		return null;
+		 Node<Type> current = firstNode; 
+			while (current.next !=null) {
+				current = current.next;
+			}
+			return current.data;
 	}
 
 	@Override
@@ -98,13 +129,35 @@ public class Linked_List_235<Type> implements List_235<Type> {
 
 	@Override
 	public int size() {
-		// FIXME: See List_235.java JavaDoc Comments
-		return 0;
+		 Node<Type> current = firstNode; 
+			while (current.next !=null) {
+				current = current.next;
+				size++;
+			}
+		return size;
 	}
 
 	@Override
 	public void reverse() {
-		// FIXME: See List_235.java JavaDoc Comments
+		 Node<Type> first = firstNode;
+		 Node<Type> current = firstNode; 
+		 //while (count < size % 2)
+		 //{ count++;
+		 //  DO RECURSION public Node<Type> recursion(first) { . . . firstsaved = first.next. . . return firstsaved}
+		 
+		 //first = current.next
+		 //  loop and swap-save ie while first.next != null
+		 //
+		 //append a .next to variable
+			while (current.next.next !=null) {
+				current = current.next;
+			}
+			Node<Type> saved = current;
+			current = first;
+			firstNode = saved;
+			
+			//current.next.data = first.next.data;
+			//current.next.next = first.next.next;
 	}
 
 	@Override
